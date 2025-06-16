@@ -1,0 +1,99 @@
+#languages-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.lang-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.lang-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.lang-text h2 {
+  font-size: 32px;
+  color: #021a50;
+  margin-bottom: 20px;
+}
+
+.lang-text p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.lang-image {
+  flex: 1;
+  position: relative;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.lang-image img {
+  width: 90%;
+  max-width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Language bubble styles */
+.lang-bubbles {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.bubble {
+  display: inline-block;
+  background-color: #ff63a5;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 5px;
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+.bubble2 {
+  background-color: #022aab;
+}
+
+.bubble3 {
+  background-color: #2aa8e0;
+}
+
+.bubble4 {
+  background-color: #a950d2;
+}
+
+/* Bubble float animation */
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-10px); opacity: 0.9; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lang-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .lang-bubbles {
+    position: relative;
+    margin-top: 20px;
+  }
+}
