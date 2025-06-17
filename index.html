@@ -7,56 +7,184 @@
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
+
+  <!-- nav bar -->
   <header id="navbar">
-    <div id="logo-container">
-      <img src="images/logo.png" alt="TaskNest Logo" id="logo-image">
-      <span id="logo-text">TASK <span id="logo-highlight">NEST</span></span>
-    </div>
-    <nav id="nav-links">
-      <a href="index.html">Home</a>
-      <a href="navlinks/features.html">Features</a>
-      <a href="navlinks/pricing.html">Pricing</a>
-      <a href="navlinks/contactus.html">Contact</a>
-      <a href="navlinks/blog.html">Blog</a>
-    </nav>
-    <div id="login">
-      <button id="login-btn">Log In</button>
-    </div>
+      <div id="logo-container">
+        <img src="images/logo.png" alt="TaskNest Logo" id="logo-image">
+        <span id="logo-text">TASK <span id="logo-highlight">NEST</span></span>
+      </div>
+      <nav id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="navlinks/features.html">Features</a>
+        <a href="navlinks/pricing.html">Pricing</a>
+        <a href="navlinks/contactus.html">Contact</a>
+        <a href="navlinks/blog.html">Blog</a>
+      </nav>
+      <div id="login">
+        <button id="login-btn">Log In</button>
+      </div>
   </header>
 
   <section id="homepage">
-    <div id="bubble-bg">
-      <span class="bubble" style="width: 80px; height: 80px; background: #ff63a5; left: 10%; animation-delay: 0s;"></span>
-      <span class="bubble" style="width: 100px; height: 100px; background: #2a57d6; left: 30%; animation-delay: 2s;"></span>
-      <span class="bubble" style="width: 60px; height: 60px; background: #ff63a5; left: 50%; animation-delay: 4s;"></span>
-      <span class="bubble" style="width: 90px; height: 90px; background: #2a57d6; left: 70%; animation-delay: 6s;"></span>
-      <span class="bubble" style="width: 120px; height: 120px; background: #ff63a5; left: 85%; animation-delay: 8s;"></span>
-    </div>
+      <div id="bubble-bg">
+          <span class="bubble bubble1" ></span>
+          <span class="bubble bubble2" ></span>
+          <span class="bubble bubble3" ></span>
+          <span class="bubble bubble4" ></span>
+          <span class="bubble bubble5"></span>
+      </div>
 
-    <div id="homepage-text">
-      <h1><span id="pink">Plan.</span> <span id="purple">Manage.</span> <span id="blue">Achieve.</span></h1>
-      <h3>Smart Task Management and Seamless Team Collaboration in One Powerful Platform!</h3>
-      <p>
-        Welcome to TaskNest – your all-in-one workspace to streamline workflows, assign tasks, and track progress with ease. 
-        Designed for modern teams, TaskNest empowers you to boost productivity, enhance transparency, and simplify team coordination, 
-        whether you're working remotely or in the office. Say goodbye to missed deadlines and scattered communications — 
-        say hello to organized success.
-      </p>
-    </div>
+      <div id="homepage-text">
+        <h1><span id="pink">Plan.</span> <span id="purple">Manage.</span> <span id="blue">Achieve.</span></h1>
+        <h3>Smart Task Management and Seamless Team Collaboration in One Powerful Platform!</h3>
+        <p>
+          Welcome to TaskNest – your all-in-one workspace to streamline workflows, assign tasks, and track progress with ease. 
+          Designed for modern teams, TaskNest empowers you to boost productivity, enhance transparency, and simplify team coordination, 
+          whether you're working remotely or in the office. Say goodbye to missed deadlines and scattered communications — 
+          say hello to organized success.
+        </p>
+      </div>
 
     <div id="homepage-video">
-       <div id="bubble-bg">
-        <span class="bubble" style="width: 80px; height: 80px; background: #ff63a5; left: 10%; animation-delay: 0s;"></span>
-        <span class="bubble" style="width: 100px; height: 100px; background: #2a57d6; left: 30%; animation-delay: 2s;"></span>
-        <span class="bubble" style="width: 60px; height: 60px; background: #ff63a5; left: 50%; animation-delay: 4s;"></span>
-        <span class="bubble" style="width: 90px; height: 90px; background: #2a57d6; left: 70%; animation-delay: 6s;"></span>
-        <span class="bubble" style="width: 120px; height: 120px; background: #ff63a5; left: 85%; animation-delay: 8s;"></span>
-      </div>
-      <video autoplay muted loop id="intro-video">
-        <source src="videos/intro-video.mp4" type="video/mp4">
-      </video>
+        <div id="bubble-bg">
+          <span class="bubble bubble1"></span>
+          <span class="bubble bubble2" ></span>
+          <span class="bubble bubble3"></span>
+          <span class="bubble bubble4"></span>
+          <span class="bubble bubble5"></span>
+        </div>
+        <video autoplay muted loop id="intro-video">
+          <source src="videos/intro-video.mp4" type="video/mp4">
+        </video>
     </div>
   </section>
+
+  <!-- Slide 1 -->
+  <section class="feature-slide" id="slide1">
+    <div class="feature-text text-left">
+      <h2 class="feature-title">Track Progress</h2>
+      <p class="feature-description">
+        Manage your team effectively with our smart project management system.<br />
+        Assign tasks based on departments and dependencies to maintain smooth workflow.
+      </p>
+      <ul class="feature-list">
+        <li>Department-wise task allocation</li>
+        <li>Real-time monitoring</li>
+        <li>Task distribution insights</li>
+      </ul>
+    </div>
+    <div class="feature-image-card" id="img1-card">
+      <img class="feature-image" src="images/task_distribution.jpg" alt="Task Distribution Image" />
+    </div>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="feature-slide" id="slide2">
+    <div class="feature-image-card" id="img2-card">
+      <img class="feature-image" src="images/collaboration with a team.jpg" alt="Team Collaboration Image" />
+    </div>
+    <div class="feature-text text-right">
+      <h2 class="feature-title">Collaborate with the Team</h2>
+      <p class="feature-description">
+        Share updates, provide feedback, and assign tasks—all in one place. Enhance communication with built-in collaboration tools.
+      </p>
+      <ul class="feature-list">
+        <li>Centralized communication</li>
+        <li>Task assignment</li>
+        <li>Role-based permissions</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section class="feature-slide" id="slide3">
+      <div class="feature-text text-left">
+        <h2 class="feature-title">Ready-made Templates</h2>
+        <p class="feature-description">
+          Speed up your workflow with professionally built templates tailored to your domain. Save time and maintain consistency across tasks.
+        </p>
+        <ul class="feature-list">
+          <li>Quick setup</li>
+          <li>Industry-specific template library</li>
+          <li>Customizable templates</li>
+        </ul>
+      </div>
+      <div class="feature-image-card" id="img3-card">
+        <img class="feature-image" src="images/templates.jpg" alt="Templates Image" />
+      </div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section class="feature-slide" id="slide4">
+      <div class="feature-image-card" id="img4-card">
+        <img class="feature-image" src="images/validation.jpg" alt="Validation Image" />
+      </div>
+      <div class="feature-text text-right">
+        <h2 class="feature-title">AI Auto-Review & Validation</h2>
+        <p class="feature-description">
+          Eliminate errors before they occur with smart validation. Instantly verify tasks, maintain data accuracy, and reduce rework with timestamped results.
+        </p>
+        <ul class="feature-list">
+          <li>Instant task verification</li>
+          <li>Data consistency & accuracy</li>
+          <li>Reduced rework</li>
+        </ul>
+      </div>
+  </section>
+
+
+
+  <footer id="footer">
+        <div class="footer-container">
+            <!-- Social Icons -->
+            <div class="footer-column">
+                <h2 class="footer-logo">Task<span>Nest</span></h2>
+                <div class="social-icons">
+                    <a href="#"><img src="images/facebook.png" alt="Facebook" /></a>
+                    <a href="#"><img src="images/x.jpg" alt="X" /></a>
+                    <a href="#"><img src="images/instagram.jpg" alt="Instagram" /></a>
+                    <a href="#"><img src="images/linkedin.png" alt="LinkedIn" /></a>
+                    <a href="#"><img src="images/youtube.png" alt="YouTube" /></a>
+                </div>
+            </div>
+
+            <!-- Company Links -->
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="navlinks/home.html">Home</a></li>
+                    <li><a href="navlinks/feautures.html">Features</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Help & Support -->
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="navlinks/contactus.html">Contact Us</a></li>
+                    <li><a href="#">Refund & Cancellation</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-column-contact-info">
+                <p><strong>Email:</strong> support@tasknest.io</p>
+                <p><strong>Phone:</strong> +91 98342007765</p>
+                <p><strong>Address:</strong> 4th Floor, ABC Towers, Madurai, India</p>
+                <p><strong>CIN:</strong> U63796TN2025PTC000000</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; TaskNest 2025. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

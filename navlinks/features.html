@@ -1,73 +1,68 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskNest Features</title>
-    <link rel="stylesheet" href="features.css" />
-    </head>
-    <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaskNest - Features</title>
+  <link rel="stylesheet" href="features.css" />
+</head>
+<body>
 
-    <!--Features Navigation -->
-    <section class="features-nav">
-        <div class="nav-feature-left">
-        <a href="#monitoring">Employee Monitoring</a>
-        </div>
-        <div class="nav-feature-center">
-        <a href="#attendance">Time & Attendance</a>
-        </div>
-        <div class="nav-feature-right">
-        <a href="#productivity">Productivity Analytics</a>
-        </div>
+  <header class="navbar">
+    <h1 class="logo">TASK <span> NEST</span></h1>
+    <nav class="tabs">
+      <button class="tab active">Attendance Management</button>
+      <button class="tab">Workflow Management</button>
+      <button class="tab">Collaboration</button>
+      <button class="tab">Reporting</button>
+    </nav>
+  </header>
+
+  <main class="content">
+
+    <!-- Attendance Management -->
+    <section id="attendance" class="tab-content active">
+      <h2>Mark attendance with Geo-location</h2>
+      <p>Hassle-free attendance marking with a mobile phone with GPS-based geo-location capturing. Making attendance management flexible and monitoring better.</p>
+
+      <details>
+        <summary>Leave Management</summary>
+        <p>Track and manage your team’s leave seamlessly.</p>
+      </details>
+      <details>
+        <summary>Calendar View</summary>
+        <p>Visualize attendance and leaves on a calendar.</p>
+      </details>
+      <details>
+        <summary>Multiple Shift</summary>
+        <p>Support for different shift timings and scheduling.</p>
+      </details>
+      <details>
+        <summary>Geofencing</summary>
+        <p>Enable attendance only within defined office perimeters.</p>
+      </details>
     </section>
 
-    <!-- Feature Sections -->
-
-     <!--section 1-->
-    <section id="monitoring" class="feature-section light-blue">
-        <img src="images/employee_monitoring.jpg" alt="Employee Monitoring" />
-
-        <div class="feature-text">
-            <h2>Employee Monitoring</h2>
-            <p><strong>Track Real-Time Activities:</strong> Monitor the applications and websites your employees visit during work hours.</p>
-            <p><strong>Automated Screenshot Capture:</strong> Take automated screen captures to verify productivity without manual checking.</p>
-            <p><strong>Keystroke Logging:</strong> Keep a secure log of keystrokes for understanding typing patterns without breaching privacy.</p>
-            <p><strong>Behavior Analytics:</strong> Get actionable insights based on working hours, idle time, and peak productivity windows.</p>
-        </div>
+    <!-- Workflow Management -->
+    <section id="workflow" class="tab-content">
+      <h2>Workflow Management</h2>
+      <p>Design, track, and manage workflows efficiently across teams.</p>
     </section>
 
-
-    <!--section 2-->
-    <section id="attendance" class="feature-section light-pink reverse-layout">
-        <div class="feature-text">
-            <h2>Employee Time and Attendance</h2>
-            <p><strong>Track employee time spent:</strong> Easily monitor the number of hours your employees spend on projects, tasks, and clients.</p>
-            <p><strong>Know who’s in today:</strong> Instantly view who is actively working, ensuring accountability and better planning.</p>
-            <p><strong>Automated attendance reports:</strong> Generate daily, weekly, or monthly reports effortlessly to reduce manual errors.</p>
-            <p><strong>Real-time attendance logging:</strong> Employees' in and out times are logged live, ensuring accuracy and transparency.</p>
-        </div>
-
-        <img src="images/time-attendance.jpg" alt="Employee Time and Attendance" />
+    <!-- Collaboration -->
+    <section id="collaboration" class="tab-content">
+      <h2>Collaboration</h2>
+      <p>Improve team communication and task coordination.</p>
     </section>
 
-
-    <!--section 3-->
-    <section id="productivity" class="feature-section light-white">
-        <img src="images/productivity.jpg" alt="Productivity Analytics" />
-
-        <div class="feature-text">
-            <h2>Productivity Analytics</h2>
-            <p><strong>Visual performance dashboards:</strong> View productivity trends over time with clean, easy-to-read charts.</p>
-            <p><strong>Daily and weekly reports:</strong> Automatically generated insights on work patterns, time spent, and task completion.</p>
-            <p><strong>Goal tracking:</strong> Monitor employee goals and measure progress against performance targets.</p>
-            <p><strong>Identify efficiency gaps:</strong> Detect unproductive hours and take corrective actions to improve workflows.</p>
-        </div>
+    <!-- Reporting -->
+    <section id="reporting" class="tab-content">
+      <h2>Reporting</h2>
+      <p>Generate detailed performance and task reports with ease.</p>
     </section>
 
-    
-    <footer class="footer">
-        <p>© 2025 TaskNest. All rights reserved.</p>
-    </footer>
+  </main>
 
-    </body>
+  
+</body>
 </html>
