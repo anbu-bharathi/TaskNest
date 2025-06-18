@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaskNest - Features</title>
+  <link rel="stylesheet" href="features.css" />
+</head>
+
+<body>
+  <header class="navbar">
+    <h1 class="logo">TASK <span> NEST</span></h1>
+    <nav class="tabs">
+      <button class="tab active" onclick="showTab('attendance')">Attendance Management</button>
+      <button class="tab" onclick="showTab('workflow')">Workflow Management</button>
+      <button class="tab" onclick="showTab('collaboration')">Collaboration</button>
+      <button class="tab" onclick="showTab('reporting')">Reporting</button>
+    </nav>
+  </header>
+
+  <main class="content">
+    
+    <!-- Attendance Management -->
+      <section class="attendance-section">
+          <div class="features-left">
+            <h2 class="section-title">Smart Workforce Management</h2>
+            <p class="section-description">Click below to explore each feature.</p>
+
+             <details class="feature-item" data-feature="attendance">
+                <summary>Mark Attendance</summary>
+                  <p>
+                    Mark your presence using mobile GPS. Easily track who is in, when, and where.
+                    This ensures accurate time logs and simplifies attendance tracking for remote and hybrid teams.
+                    GPS tracking enhances visibility and reduces manual errors, making workforce management seamless.
+                  </p>
+              </details>
+
+              <details class="feature-item" data-feature="leave">
+                <summary>Leave Management</summary>
+                <p>
+                  Submit and track leave requests with automatic manager notifications.
+                  Keep all leave records centralized and accessible.
+                  Automated workflows reduce approval delays and give real-time leave balances to employees.
+                </p>
+              </details>
+
+              <details class="feature-item" data-feature="calendar">
+                <summary>Calendar View</summary>
+                <p>
+                  Get a bird's-eye view of all team attendance, leaves, and shifts on a visual calendar.
+                  Helps HR and team leads to plan resources effectively and avoid scheduling conflicts.
+                  Filters and color codes make it easier to understand employee availability.
+                </p>
+              </details>
+
+              <details class="feature-item" data-feature="shift">
+                <summary>Multiple Shift</summary>
+                <p>
+                  Set up various shift timings, assign team members and automate tracking.
+                  Customize shifts for different teams or departments, and automate overtime calculation.
+                  Ensures efficient staffing and reduces errors in manual shift tracking.
+                </p>
+              </details>
+
+              <details class="feature-item" data-feature="geofencing">
+                <summary>Geofencing</summary>
+                <p>
+                  Restrict punch-in access to specific geographic office zones for better compliance.
+                  Prevents misuse of attendance system by ensuring location-specific attendance.
+                  Improves transparency and trust in the attendance process.
+                </p>
+              </details>
+          </div>
+
+        <div class="feature-image-container">
+          <img src="images/attendence.webp" alt="attendence" class="feature-image active" data-img="attendance">
+          <img src="images/leave.png" alt="Feature Image" class="feature-image" data-img="leave">
+          <img src="images/calendar.jpg" alt="Feature Image" class="feature-image" data-img="calendar">
+          <img src="images/shift.png" alt="Feature Image" class="feature-image" data-img="shift">
+          <img src="images/geofencing.jpg" alt="Feature Image" class="feature-image" data-img="geofencing">
+        </div>
+      </section>
+
+    <!-- Workflow Management -->
+    <section id="workflow" class="tab-content">
+      <h2>Workflow Management</h2>
+      <p>Design, track, and manage workflows efficiently across teams.</p>
+    </section>
+
+    <!-- Collaboration -->
+    <section id="collaboration" class="tab-content">
+      <h2>Collaboration</h2>
+      <p>Improve team communication and task coordination.</p>
+    </section>
+
+    <!-- Reporting -->
+    <section id="reporting" class="tab-content">
+      <h2>Reporting</h2>
+      <p>Generate detailed performance and task reports with ease.</p>
+    </section>
+
+  </main>
+
+  <script src="features.js">
+  </script>
+
+</body>
+</html>

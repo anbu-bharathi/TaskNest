@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Task Form</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+<body class="reset">
+    <div id="page">
+        <div class="task-form-container">
+            <h2 class="form-title">Create Task</h2>
+            <form id="taskForm">
+
+                <!-- Task Name-->
+                <div class="form-group">
+                    <label for="taskName" class="form-label" >Task Name</label>
+                    <input type="text" id="taskName" class="form-input" maxlength="30"/>
+                    <div class="form-error" id="taskNameError"></div>
+                </div>
+
+                <!-- Task Description -->
+                <div class="form-group">
+                    <label for="taskDesc" class="form-label">Description</label>
+                    <textarea id="taskDesc" class="form-textarea" rows="3" maxlength="200"></textarea>
+                    <div class="form-error" id="taskDescError"></div>
+                </div>
+
+                <!-- Due Date -->
+                <div class="form-group">
+                    <label for="dueDate" class="form-label">Due Date</label>
+                    <input type="date" id="dueDate" class="form-input"/>
+                    <div class="form-error" id="dueDateError"></div>
+                </div>
+
+                <!-- Priority -->
+                <div class="form-group">
+                    <label for="priority" class="form-label">Priority</label>
+                    <select id="priority" class="form-select" >
+                        <option value="">Select</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                    <div class="form-error" id="priorityError"></div>
+                </div>
+
+                <!-- Team Members-->
+                <div class="form-group">
+                    <label for="teamMembers" class="form-label">Team Members </label>
+                    <input type="text" id="teamMember" class="form-input" placeholder="Example : Anbu" />
+                    <div class="form-error" id="teamMemberError"></div>
+                </div>
+
+                <!-- Add Attachment -->
+                <div class="form-group">
+                    <label for="attachment" class="form-label">Attachment</label>
+                    <input type="file" id="attachment" class="form-input" />
+                </div>
+
+                <!-- submit button -->
+                <button type="submit" class="submit-btn">Add Task</button>
+                <div class="form-message" id="message"></div>
+
+            </form>
+        </div>
+    </div>
+
+  <script src="form.js">
+    
+  </script>
+</body>
+</html>
