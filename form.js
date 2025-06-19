@@ -1,4 +1,4 @@
-
+// tabs
 function showTab(tab) {
   const addTab = document.getElementById("add-tab");
   const viewTab = document.getElementById("view-tab");
@@ -18,6 +18,7 @@ function showTab(tab) {
 }
 
 
+// add task
 const form = document.getElementById("taskForm");
 const message = document.getElementById("message");
 const taskList = document.getElementById("taskList");
@@ -36,6 +37,7 @@ const dueDateError = document.getElementById("dueDateError");
 const priorityError = document.getElementById("priorityError");
 const teamMemberError = document.getElementById("teamMemberError");
 
+// view task
 
 let tasks = [
   {
@@ -143,10 +145,9 @@ form.addEventListener("submit", function (e) {
 
     tasks.push(newTask);
     form.reset();
-    displayTasks();
-
+    
     message.textContent = "✅ Task created successfully!";
-    message.style.color = "lightgreen";
+    message.style.color = "darkgreen";
 
     [taskNameError, taskDescError, dueDateError, priorityError, teamMemberError].forEach(el => el.textContent = "");
   } else {
