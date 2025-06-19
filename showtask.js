@@ -1,4 +1,3 @@
-
 function showTab(tab) {
   const addTab = document.getElementById("add-tab");
   const viewTab = document.getElementById("view-tab");
@@ -10,7 +9,7 @@ function showTab(tab) {
   } else {
     addTab.classList.remove("active");
     viewTab.classList.add("active");
-    displayTasks(); 
+    displayTasks(); // always refresh when viewing
   }
 
   buttons.forEach(btn => btn.classList.remove("active"));
@@ -22,42 +21,43 @@ const form = document.getElementById("taskForm");
 const message = document.getElementById("message");
 const taskList = document.getElementById("taskList");
 
-
+// Input fields
 const taskNameInput = document.getElementById("taskName");
 const taskDescInput = document.getElementById("taskDesc");
 const dueDateInput = document.getElementById("dueDate");
 const priorityInput = document.getElementById("priority");
 const teamMemberInput = document.getElementById("teamMember");
 
-
+// Error fields
 const taskNameError = document.getElementById("taskNameError");
 const taskDescError = document.getElementById("taskDescError");
 const dueDateError = document.getElementById("dueDateError");
 const priorityError = document.getElementById("priorityError");
 const teamMemberError = document.getElementById("teamMemberError");
 
-
+// Dummy task list
 let tasks = [
   {
-    name: "Design Landing Page",
-    desc: "Create layout with responsive grid and animations",
-    due: "21-06-2025",
+    name: "Create a Home Page",
+    desc: "Add navbar and animation",
+    due: "2025-06-19",
     prior: "High",
     teamMem: "Anbu"
   },
   {
-    name: "Design Login page",
-    desc: "Implement validation and session storage",
-    due: "28-06-2025",
+    name: "Create a Feature Page",
+    desc: "Add navbar and animation",
+    due: "2025-06-21",
     prior: "Medium",
     teamMem: "Bharathi"
   }
 ];
 
+// allow future dates only
 const today = new Date().toISOString().split("T")[0];
 dueDateInput.setAttribute("min", today);
 
-
+// Validation functions
 function validateTaskName() {
   const value = taskNameInput.value.trim();
   if (!value) {
@@ -114,13 +114,11 @@ function validateTeamMember() {
   return true;
 }
 
-
 taskNameInput.addEventListener("input", validateTaskName);
 taskDescInput.addEventListener("input", validateTaskDesc);
 dueDateInput.addEventListener("change", validateDueDate);
 priorityInput.addEventListener("change", validatePriority);
 teamMemberInput.addEventListener("input", validateTeamMember);
-
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -141,7 +139,7 @@ form.addEventListener("submit", function (e) {
       teamMem: teamMemberInput.value.trim()
     };
 
-    tasks.push(newTask);
+    tasks.push(newTask); // Add to existing array
     form.reset();
     displayTasks();
 
@@ -155,7 +153,7 @@ form.addEventListener("submit", function (e) {
   }
 });
 
-
+// Display all tasks
 function displayTasks() {
   taskList.innerHTML = "";
   tasks.forEach(task => {
@@ -171,3 +169,4 @@ function displayTasks() {
     taskList.appendChild(taskItem);
   });
 }
+
