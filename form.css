@@ -5,7 +5,6 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-
 #page {
   background-color: #bfb9c5;
   display: flex;
@@ -15,12 +14,12 @@
   padding: 20px;
 }
 
-
 .tab-header {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .tab-button {
@@ -42,24 +41,22 @@
   color: white;
 }
 
-
 .task-form-container {
   background-color: rgb(160, 203, 232);
   padding: 30px;
   border-radius: 15px;
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   color: white;
+  margin: 0 auto;
 }
-
 
 .form-title {
   text-align: center;
   margin-bottom: 20px;
   color: #021a50;
 }
-
 
 .form-group {
   margin-bottom: 15px;
@@ -69,7 +66,7 @@
   display: block;
   margin-bottom: 6px;
   font-weight: bold;
-  color: #001f4d; 
+  color: #001f4d;
 }
 
 .form-input,
@@ -85,7 +82,6 @@
 .form-textarea {
   resize: vertical;
 }
-
 
 .submit-btn {
   background-color: #ff63a5;
@@ -119,7 +115,6 @@
   color: red;
 }
 
-
 .tab-content {
   display: none;
 }
@@ -128,18 +123,138 @@
   display: block;
 }
 
-
-.task {
-  background-color: #ffffff;
-  border-left: 5px solid #0077cc;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 5px;
+/* TABLE STYLE */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
   color: #333;
+  table-layout: fixed;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
-.task h3 {
-  margin-bottom: 6px;
-  color: #005fa3;
+.task-table th,
+.task-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  word-wrap: break-word;
 }
+
+.task-table th {
+  background-color: #e9efff;
+  color: #021a50;
+}
+
+.task-table input,
+.task-table select {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.task-table input[type="date"] {
+  padding: 5px;
+}
+
+.task-table button {
+  margin: 2px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.task-table button:hover {
+  transform: scale(1.2);
+}
+
+/* Icon Colors + Tooltips */
+.task-table button[onclick*="toggleEditMode"] {
+  color: #007bff;
+}
+.task-table button[onclick*="deleteTask"] {
+  color: #dc3545;
+}
+.task-table .cancel-btn {
+  color: #ffc107;
+}
+
+.task-table button[title]::after {
+  content: attr(title);
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: white;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  top: -30px;
+  white-space: nowrap;
+}
+
+.task-table button:hover[title]::after {
+  display: block;
+}
+
+/* Cancel button */
+.cancel-btn {
+  display: none;
+}
+
+tr.editing {
+  background-color: #fff9d6;
+}
+
+.task-table tr:hover {
+  background-color: #eef7ff;
+}
+
+/* CARD VIEW FOR SMALL DEVICES */
+@media (max-width: 768px) {
+  .task-table,
+  .task-table thead,
+  .task-table tbody,
+  .task-table th,
+  .task-table td,
+  .task-table tr {
+    display: block;
+  }
+
+  .task-table thead tr {
+    display: none;
+  }
+
+  .task-table td {
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .task-table td::before {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-weight: bold;
+    color: #021a50;
+  }
+
+  .task-table td:nth-child(1)::before { content: "Name"; }
+  .task-table td:nth-child(2)::before { content: "Description"; }
+  .task-table td:nth-child(3)::before { content: "Due Date"; }
+  .task-table td:nth-child(4)::before { content: "Priority"; }
+  .task-table td:nth-child(5)::before { content: "Team"; }
+  .task-table td:nth-child(6)::before { content: "Actions"; }
+}
+
 

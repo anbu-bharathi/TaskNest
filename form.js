@@ -39,22 +39,7 @@ const teamMemberError = document.getElementById("teamMemberError");
 
 // view task
 
-let tasks = [
-  {
-    name: "Design Landing Page",
-    desc: "Create layout with responsive grid and animations",
-    due: "21-06-2025",
-    prior: "High",
-    teamMem: "Anbu"
-  },
-  {
-    name: "Design Login page",
-    desc: "Implement validation and session storage",
-    due: "28-06-2025",
-    prior: "Medium",
-    teamMem: "Bharathi"
-  }
-];
+let tasks = [];
 
 const today = new Date().toISOString().split("T")[0];
 dueDateInput.setAttribute("min", today);
@@ -149,26 +134,123 @@ form.addEventListener("submit", function (e) {
     message.textContent = "✅ Task created successfully!";
     message.style.color = "darkgreen";
 
-    [taskNameError, taskDescError, dueDateError, priorityError, teamMemberError].forEach(el => el.textContent = "");
+    
   } else {
     message.textContent = "❌ Please correct the above errors.";
     message.style.color = "#f80404";
+    document.querySelectorAll(".form-error").forEach(error => {
+    error.textContent = "";
+    });
   }
 });
 
 
 function displayTasks() {
+  const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
-  tasks.forEach(task => {
-    const taskItem = document.createElement("div");
-    taskItem.classList.add("task");
-    taskItem.innerHTML = `
-      <h3>${task.name}</h3>
-      <p><strong>Description:</strong> ${task.desc}</p>
-      <p><strong>Due Date:</strong> ${task.due}</p>
-      <p><strong>Priority:</strong> ${task.prior}</p>
-      <p><strong>Team:</strong> ${task.teamMem}</p>
+
+  if (tasks.length === 0) {
+    const row = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 6;
+    td.textContent = "🚫 No tasks created yet.";
+    td.style.textAlign = "center";
+    td.style.color = "darkred";
+    td.style.fontWeight = "bold";
+    row.appendChild(td);
+    taskList.appendChild(row);
+    return;
+  }
+
+  tasks.forEach((task, index) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td><input value="${task.name}" readonly /></td>
+      <td><input value="${task.desc}" readonly /></td>
+      <td><input type="date" value="${task.due}" disabled /></td>
+      <td>
+        <select disabled>
+          <option ${task.prior === "High" ? "selected" : ""}>High</option>
+          <option ${task.prior === "Medium" ? "selected" : ""}>Medium</option>
+          <option ${task.prior === "Low" ? "selected" : ""}>Low</option>
+        </select>
+      </td>
+      <td><input value="${task.teamMem}" readonly /></td>
+      <td>
+        <button title="Edit Task" onclick="toggleEditMode(this, ${index})">📝</button>
+        <button title="Cancel Edit" class="cancel-btn" onclick="cancelEdit(this, ${index})">❎</button>
+        <button title="Delete Task" onclick="deleteTask(${index})">🗑️</button>
+      </td>
     `;
-    taskList.appendChild(taskItem);
+
+    taskList.appendChild(row);
   });
 }
+
+
+function toggleEditMode(btn, index) {
+  const row = btn.closest("tr");
+  const inputs = row.querySelectorAll("input, select");
+  const cancelBtn = row.querySelector(".cancel-btn");
+  const isEditing = btn.textContent === "💾";
+
+  if (isEditing) {
+    const [name, desc, due, prior, team] = inputs;
+    if (new Date(due.value) < new Date().setHours(0, 0, 0, 0)) {
+      alert("Due date must be in the future.");
+      return;
+    }
+
+    tasks[index] = {
+      name: name.value,
+      desc: desc.value,
+      due: due.value,
+      prior: prior.value,
+      teamMem: team.value
+    };
+
+    btn.textContent = "📝";
+    cancelBtn.style.display = "none";
+    row.classList.remove("editing");
+    inputs.forEach(i => {
+      i.readOnly = true;
+      i.disabled = true;
+    });
+  } else {
+    btn.textContent = "💾";
+    cancelBtn.style.display = "inline";
+    row.classList.add("editing");
+    inputs.forEach(input => {
+      input.dataset.original = input.value;
+      input.readOnly = false;
+      input.disabled = false;
+    });
+  }
+}
+
+function cancelEdit(btn) {
+  const row = btn.closest("tr");
+  const inputs = row.querySelectorAll("input, select");
+  const editBtn = row.querySelector("button");
+  inputs.forEach(input => {
+    input.value = input.dataset.original;
+    input.readOnly = true;
+    input.disabled = true;
+  });
+  btn.style.display = "none";
+  editBtn.textContent = "📝";
+  row.classList.remove("editing");
+}
+
+function deleteTask(index) {
+  if (confirm("Are you sure you want to delete this task?")) {
+    tasks.splice(index, 1);
+    displayTasks();
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("dueDate").min = today;
+});
