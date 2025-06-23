@@ -46,7 +46,7 @@
   padding: 30px;
   border-radius: 15px;
   width: 100%;
-  max-width: 900px;
+  max-width: 800px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   color: white;
   margin: 0 auto;
@@ -129,10 +129,26 @@
   border-collapse: collapse;
   background-color: white;
   color: #333;
-  table-layout: fixed;
+  table-layout: auto;
   border-radius: 8px;
   overflow: hidden;
   margin-top: 10px;
+}
+
+/* Specific column widths */
+.task-table th:nth-child(1), .task-table td:nth-child(1) {
+  width: 20%;
+}
+.task-table th:nth-child(2), .task-table td:nth-child(2) {
+  width: 30%;
+}
+.task-table th:nth-child(3), .task-table td:nth-child(3),
+.task-table th:nth-child(4), .task-table td:nth-child(4),
+.task-table th:nth-child(5), .task-table td:nth-child(5) {
+  width: 12%;
+}
+.task-table th:nth-child(6), .task-table td:nth-child(6) {
+  width: 10%;
 }
 
 .task-table th,
@@ -149,20 +165,41 @@
   color: #021a50;
 }
 
+/* Inputs, selects, and textareas inside table */
 .task-table input,
-.task-table select {
+.task-table select,
+.task-table textarea {
   width: 100%;
   padding: 6px;
   font-size: 14px;
   border: 1px solid #aaa;
   border-radius: 4px;
   background-color: #f9f9f9;
+  box-sizing: border-box;
 }
 
+/* Input overflow & tooltip */
+.task-table input,
+.task-table select {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Description textarea - supports multi-line */
+.task-table textarea {
+  min-height: 40px;
+  resize: vertical;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Date input padding */
 .task-table input[type="date"] {
   padding: 5px;
 }
 
+/* Action buttons */
 .task-table button {
   margin: 2px;
   font-size: 18px;
@@ -255,6 +292,41 @@ tr.editing {
   .task-table td:nth-child(4)::before { content: "Priority"; }
   .task-table td:nth-child(5)::before { content: "Team"; }
   .task-table td:nth-child(6)::before { content: "Actions"; }
+}
+
+#taskName,
+#taskDesc {
+  min-height: 45px;
+  font-size: 16px;
+}
+
+/* Make description textarea larger in form */
+.form-textarea {
+  min-height: 90px;
+  line-height: 1.4;
+}
+
+/* In table view: enlarge input boxes */
+.task-table input[type="text"] {
+  min-height: 40px;
+  font-size: 15px;
+  padding: 8px;
+}
+
+/* In table view: make description textarea multiline and larger */
+.task-table textarea {
+  min-height: 80px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Optional: Ensure mobile view wraps long text in Name & Description */
+@media (max-width: 768px) {
+  .task-table td:nth-child(1),
+  .task-table td:nth-child(2) {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
 }
 
 
