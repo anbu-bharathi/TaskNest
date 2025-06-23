@@ -5,6 +5,10 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+body {
+  background-color: #bfb9c5;
+}
+
 #page {
   background-color: #bfb9c5;
   display: flex;
@@ -42,13 +46,8 @@
 }
 
 .task-form-container {
-  background-color: rgb(160, 203, 232);
-  padding: 30px;
-  border-radius: 15px;
   width: 100%;
-  max-width: 800px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  color: white;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -123,7 +122,6 @@
   display: block;
 }
 
-/* TABLE STYLE */
 .task-table {
   width: 100%;
   border-collapse: collapse;
@@ -135,19 +133,29 @@
   margin-top: 10px;
 }
 
-/* Specific column widths */
-.task-table th:nth-child(1), .task-table td:nth-child(1) {
-  width: 20%;
+.task-table th:nth-child(1),
+.task-table td:nth-child(1) {
+  width: 15%;
 }
-.task-table th:nth-child(2), .task-table td:nth-child(2) {
-  width: 30%;
+
+.task-table th:nth-child(2),
+.task-table td:nth-child(2) {
+  width: auto;
+  word-wrap: break-word;
+  white-space: normal;
 }
-.task-table th:nth-child(3), .task-table td:nth-child(3),
-.task-table th:nth-child(4), .task-table td:nth-child(4),
-.task-table th:nth-child(5), .task-table td:nth-child(5) {
+
+.task-table th:nth-child(3),
+.task-table td:nth-child(3),
+.task-table th:nth-child(4),
+.task-table td:nth-child(4),
+.task-table th:nth-child(5),
+.task-table td:nth-child(5) {
   width: 12%;
 }
-.task-table th:nth-child(6), .task-table td:nth-child(6) {
+
+.task-table th:nth-child(6),
+.task-table td:nth-child(6) {
   width: 10%;
 }
 
@@ -165,7 +173,6 @@
   color: #021a50;
 }
 
-/* Inputs, selects, and textareas inside table */
 .task-table input,
 .task-table select,
 .task-table textarea {
@@ -178,7 +185,6 @@
   box-sizing: border-box;
 }
 
-/* Input overflow & tooltip */
 .task-table input,
 .task-table select {
   white-space: nowrap;
@@ -186,7 +192,6 @@
   text-overflow: ellipsis;
 }
 
-/* Description textarea - supports multi-line */
 .task-table textarea {
   min-height: 40px;
   resize: vertical;
@@ -194,12 +199,10 @@
   word-wrap: break-word;
 }
 
-/* Date input padding */
 .task-table input[type="date"] {
   padding: 5px;
 }
 
-/* Action buttons */
 .task-table button {
   margin: 2px;
   font-size: 18px;
@@ -213,13 +216,14 @@
   transform: scale(1.2);
 }
 
-/* Icon Colors + Tooltips */
 .task-table button[onclick*="toggleEditMode"] {
   color: #007bff;
 }
+
 .task-table button[onclick*="deleteTask"] {
   color: #dc3545;
 }
+
 .task-table .cancel-btn {
   color: #ffc107;
 }
@@ -241,7 +245,6 @@
   display: block;
 }
 
-/* Cancel button */
 .cancel-btn {
   display: none;
 }
@@ -254,7 +257,6 @@ tr.editing {
   background-color: #eef7ff;
 }
 
-/* CARD VIEW FOR SMALL DEVICES */
 @media (max-width: 768px) {
   .task-table,
   .task-table thead,
@@ -300,27 +302,23 @@ tr.editing {
   font-size: 16px;
 }
 
-/* Make description textarea larger in form */
 .form-textarea {
   min-height: 90px;
   line-height: 1.4;
 }
 
-/* In table view: enlarge input boxes */
 .task-table input[type="text"] {
   min-height: 40px;
   font-size: 15px;
   padding: 8px;
 }
 
-/* In table view: make description textarea multiline and larger */
 .task-table textarea {
   min-height: 80px;
   font-size: 15px;
   line-height: 1.4;
 }
 
-/* Optional: Ensure mobile view wraps long text in Name & Description */
 @media (max-width: 768px) {
   .task-table td:nth-child(1),
   .task-table td:nth-child(2) {
@@ -329,4 +327,26 @@ tr.editing {
   }
 }
 
+#add-tab {
+  width: 500px;
+  margin: 0 auto;
+  background-color: #e0f4ff;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #00aaff;
+  color: #021a50;
+  box-shadow: 0 0 15px rgba(0, 170, 255, 0.2);
+}
 
+#view-tab {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #e0f4ff;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #00aaff;
+  color: #021a50;
+  box-shadow: 0 0 15px rgba(0, 170, 255, 0.2);
+  box-sizing: border-box;
+}

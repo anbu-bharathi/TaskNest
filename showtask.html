@@ -2,78 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Task Manager</title>
   <link rel="stylesheet" href="showtask.css" />
 </head>
-<body class="reset">
+<body>
   <div id="page">
     <div class="tab-header">
       <button class="tab-button active" onclick="showTab('add')">Add Task</button>
       <button class="tab-button" onclick="showTab('view')">View Tasks</button>
     </div>
 
-    <div class="task-form-container">
-
-      <!-- ADD TASK TAB -->
+    <div class="tab-content-container">
+      <!-- Add Task Tab -->
       <div id="add-tab" class="tab-content active">
         <h2 class="form-title">Create Task</h2>
         <form id="taskForm">
-          <!-- Form Fields Here (same as before) -->
           <div class="form-group">
-            <label for="taskName" class="form-label">Task Name <span class="star">*</span></label>
-            <input type="text" id="taskName" class="form-input" maxlength="30" />
-            <div class="form-error" id="taskNameError"></div>
+            <label for="taskName">Task Name *</label>
+            <input type="text" id="taskName" maxlength="30" />
           </div>
 
           <div class="form-group">
-            <label for="taskDesc" class="form-label">Description <span class="star">*</span></label>
-            <textarea id="taskDesc" class="form-textarea" rows="3" maxlength="200"></textarea>
-            <div class="form-error" id="taskDescError"></div>
+            <label for="taskDesc">Description *</label>
+            <textarea id="taskDesc" rows="3" maxlength="200"></textarea>
           </div>
 
           <div class="form-group">
-            <label for="dueDate" class="form-label">Due Date <span class="star">*</span></label>
-            <input type="date" id="dueDate" class="form-input" />
-            <div class="form-error" id="dueDateError"></div>
+            <label for="dueDate">Due Date *</label>
+            <input type="date" id="dueDate" />
           </div>
 
           <div class="form-group">
-            <label for="priority" class="form-label">Priority <span class="star">*</span></label>
-            <select id="priority" class="form-select">
+            <label for="priority">Priority *</label>
+            <select id="priority">
               <option value="">Select</option>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
-            <div class="form-error" id="priorityError"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="teamMember" class="form-label">Team Members <span class="star">*</span></label>
-            <input type="text" id="teamMember" class="form-input" placeholder="Example: Anbu" />
-            <div class="form-error" id="teamMemberError"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="attachment" class="form-label">Attachment</label>
-            <input type="file" id="attachment" class="form-input" />
           </div>
 
           <button type="submit" class="submit-btn">Add Task</button>
-          <div class="form-message" id="message"></div>
         </form>
       </div>
 
-      <!-- VIEW TASK TAB -->
+      <!-- View Tasks Tab -->
       <div id="view-tab" class="tab-content">
         <h2 class="form-title">All Tasks</h2>
         <div id="taskList" class="task-list"></div>
       </div>
-
     </div>
   </div>
 
-  <script src="form.js"></script>
+  <script src="showtask.js"></script>
 </body>
 </html>
+

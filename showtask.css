@@ -1,132 +1,121 @@
-    * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
 }
 
-#page {
-  background-color: #bfb9c5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+body {
+  background-color: #f3f1f8;
   padding: 20px;
 }
 
-.task-form-container {
-  background-color: rgb(160, 203, 232);
-  padding: 30px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  color: white;
-}
-
-.form-title {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #ff63a5;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #001f4d; /* dark blue */
-}
-
-.form-input,
-.form-textarea,
-.form-select {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-.form-textarea {
-  resize: vertical;
-}
-
-.submit-btn {
-  background-color: #ff63a5;
-  color: white;
-  padding: 12px;
-  width: 100%;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
-  background-color: #e05291;
-}
-
-.form-message {
-  margin-top: 15px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.form-error {
-  color: red;
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-.star {
-  color: red;
-}
-
-/* Task display styling */
-.task {
-  background-color: #ffffff;
-  border-left: 5px solid #0077cc;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 5px;
-  color: #333;
-}
-
-.task h3 {
-  margin-bottom: 6px;
-  color: #005fa3;
+#page {
+  max-width: 1000px;
+  margin: auto;
 }
 
 .tab-header {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  gap: 10px;
 }
 
 .tab-button {
-  padding: 10px 20px;
+  background-color: #021a50;
+  color: white;
   border: none;
-  background-color: #ddd;
+  padding: 12px 20px;
+  margin: 0 10px;
+  border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.tab-button:hover,
+.tab-button.active {
+  background-color: #ff63a5;
+}
+
+.tab-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Add Tab - Small Form Box */
+#add-tab {
+  width: 500px;
+  background: white;
+  border: 2px solid #ff63a5;
+  padding: 25px;
+  border-radius: 15px;
+  color: #021a50;
+  box-shadow: 0 0 15px rgba(255, 99, 165, 0.2);
+}
+
+/* View Tab - Full Width */
+#view-tab {
+  width: 100%;
+  margin-top: 20px;
+  background: white;
+  border: 2px solid #021a50;
+  padding: 25px;
+  border-radius: 15px;
+  color: #021a50;
+  box-shadow: 0 0 15px rgba(2, 26, 80, 0.1);
+}
+
+.form-title {
+  margin-bottom: 20px;
+  color: #ff63a5;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #021a50;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
   border-radius: 5px;
 }
 
-.tab-button.active {
-  background-color: #ff63a5;
+.submit-btn {
+  background-color: #021a50;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
-.tab-content {
-  display: none;
+.submit-btn:hover {
+  background-color: #ff63a5;
 }
 
-.tab-content.active {
-  display: block;
+.task-list {
+  margin-top: 15px;
 }
+
+.task-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 5px solid #ff63a5;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
