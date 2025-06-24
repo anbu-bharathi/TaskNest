@@ -67,6 +67,15 @@
 
       <div id="view-tab" class="tab-content">
         <h2 class="form-title">All Tasks</h2>
+        <div id="sort-controls" style="text-align:right; margin: 10px;">
+          <label for="sortSelect"><strong>Sort by:</strong></label>
+          <select id="sortSelect" onchange="handleSort(this.value)">
+            <option value="">-- Select --</option>
+            <option value="priority">Priority</option>
+            <option value="dueDate">Due Date</option>
+          </select>
+        </div>
+
         <div id="taskList" class="task-list"></div>
       </div>
 
