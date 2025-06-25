@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Task Manager</title>
-  <link rel="stylesheet" href="form.css" />
+  <link rel="stylesheet" href="css/form.css" />
 </head>
+
 <body class="reset">
   <div id="page">
-
     <div class="tab-header">
       <button class="tab-button active" onclick="showTab('add')">Add Task</button>
       <button class="tab-button" onclick="showTab('view')">View Tasks</button>
@@ -67,22 +67,12 @@
 
       <div id="view-tab" class="tab-content">
         <h2 class="form-title">All Tasks</h2>
-        <div id="sort-controls" style="text-align:right; margin: 10px;">
-          <label for="sortSelect"><strong>Sort by:</strong></label>
-          <select id="sortSelect" onchange="handleSort(this.value)">
-            <option value="">-- Select --</option>
-            <option value="priority">Priority</option>
-            <option value="dueDate">Due Date</option>
-          </select>
-        </div>
-
         <div id="taskList" class="task-list"></div>
       </div>
 
     </div>
   </div>
 
-  <script src="form.js"></script>
+  <script src="js/form.js"></script>
 </body>
 </html>
-

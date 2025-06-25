@@ -12,7 +12,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Navbar */
 #navbar {
   position: sticky;
   top: 0;
@@ -460,3 +459,41 @@ html, body {
 .footer-column-contact-info{
       line-height: 2;
 }
+
+
+/* Deadline Alert Banner */
+
+.deadlineAlert {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  z-index: 999;
+  border-bottom: 2px solid #0d1f4c;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.scrollingText {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: scrollFast 15s linear infinite;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+@keyframes scrollFast {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+

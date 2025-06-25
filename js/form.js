@@ -1,3 +1,25 @@
+// Get form elements
+const form = document.getElementById("taskForm");
+const message = document.getElementById("message");
+const taskList = document.getElementById("taskList");
+
+// Input fields
+const taskNameInput = document.getElementById("taskName");
+const taskDescInput = document.getElementById("taskDesc");
+const dueDateInput = document.getElementById("dueDate");
+const priorityInput = document.getElementById("priority");
+const teamMemberInput = document.getElementById("teamMember");
+
+// Error fields
+const taskNameError = document.getElementById("taskNameError");
+const taskDescError = document.getElementById("taskDescError");
+const dueDateError = document.getElementById("dueDateError");
+const priorityError = document.getElementById("priorityError");
+const teamMemberError = document.getElementById("teamMemberError");
+
+let currentSortType = "";
+let sortAscending = true;
+
 // Toggle tabs
 function showTab(tab) {
   const addTab = document.getElementById("add-tab");
@@ -21,38 +43,35 @@ function showTab(tab) {
 let tasks = [
   {
     name: "Create a Home Page",
-    desc: "Add navbar and animation",
-    due: "2025-06-25",
-    prior: "High",
+    desc: "Design and build the homepage layout, add responsive navbar, and apply smooth animations.",
+    due: "2025-06-26",
+    prior: "Low",
     teamMem: "Anbu"
   },
   {
-    name: "Create a Feature Page",
-    desc: "Add navbar and animation",
-    due: "2025-06-26",
+    name: "Fix Contact Page",
+    desc: "Fix form bug, add validations, improve layout, and test user input handling across devices.",
+    due: "2025-07-01",
     prior: "Medium",
     teamMem: "Bharathi"
+  },
+  {
+    name: "Develop Login Module",
+    desc: "Implement user authentication, password reset, and session management using JWT.",
+    due: "2025-06-27",
+    prior: "High",
+    teamMem: "Kavin"
+  },
+  {
+    name: "Test Mobile Responsiveness",
+    desc: "Perform cross-device testing and fix layout issues on tablets and mobile phones.",
+    due: "2025-07-11",
+    prior: "Medium",
+    teamMem: "Priya"
   }
 ];
 
-// Get form elements
-const form = document.getElementById("taskForm");
-const message = document.getElementById("message");
-const taskList = document.getElementById("taskList");
 
-// Input fields
-const taskNameInput = document.getElementById("taskName");
-const taskDescInput = document.getElementById("taskDesc");
-const dueDateInput = document.getElementById("dueDate");
-const priorityInput = document.getElementById("priority");
-const teamMemberInput = document.getElementById("teamMember");
-
-// Error fields
-const taskNameError = document.getElementById("taskNameError");
-const taskDescError = document.getElementById("taskDescError");
-const dueDateError = document.getElementById("dueDateError");
-const priorityError = document.getElementById("priorityError");
-const teamMemberError = document.getElementById("teamMemberError");
 
 // Validation functions
 function validateTaskName() {
@@ -131,7 +150,7 @@ form.addEventListener("submit", function (e) {
 
   if (!isValid) {
     message.textContent = "❌ Please correct the above errors.";
-    message.style.color = "#ffbbbb";
+    message.style.color = "red";
     return;
   }
 
@@ -147,31 +166,29 @@ form.addEventListener("submit", function (e) {
   renderTasks();
   form.reset();
   message.textContent = "✅ Task added successfully!";
-  message.style.color = "lightgreen";
+  message.style.color = "darkgreen";
   setTimeout(() => (message.textContent = ""), 3000);
   [taskNameError, taskDescError, dueDateError, priorityError, teamMemberError].forEach(el => el.textContent = "");
 });
 
-// Render task list
 function renderTasks() {
   taskList.innerHTML = "";
-
-  // Create and add sort dropdown
   const sortControls = document.createElement("div");
   sortControls.id = "sort-controls";
   sortControls.style.textAlign = "right";
   sortControls.style.marginBottom = "10px";
   sortControls.innerHTML = `
-    <label for="sortSelect">Sort by: </label>
-    <select id="sortSelect" onchange="handleSort(this.value)">
+    <label for="sortType">Sort by: </label>
+    <select id="sortType" onchange="handleSortChange()">
       <option value="">-- Select --</option>
-      <option value="priority">Priority</option>
-      <option value="dueDate">Due Date</option>
+      <option value="priority" ${currentSortType === "priority" ? "selected" : ""}>Priority</option>
+      <option value="dueDate" ${currentSortType === "dueDate" ? "selected" : ""}>Due Date</option>
     </select>
-  `;
+    <button id="sortOrderBtn">${sortAscending ? "⬆️ Asc" : "⬇️ Desc"}</button>
+`;
   taskList.appendChild(sortControls);
 
-  // ✅ Check for no tasks AFTER appending dropdown
+
   if (tasks.length === 0) {
     const noTaskMsg = document.createElement("p");
     noTaskMsg.textContent = "No tasks available.";
@@ -199,7 +216,6 @@ function renderTasks() {
 
   tasks.forEach((task, index) => {
     const row = document.createElement("tr");
-
     row.innerHTML = `
       <td><textarea disabled maxlength="50">${task.name}</textarea></td>
       <td><textarea disabled maxlength="200">${task.desc}</textarea></td>
@@ -217,13 +233,11 @@ function renderTasks() {
         <button onclick="deleteTask(${index})" title="Delete Task">🗑️</button>
       </td>
     `;
-
     tbody.appendChild(row);
   });
 
   table.appendChild(tbody);
-  taskList.innerHTML = ""; // clear before appending
-  taskList.appendChild(table);
+  taskList.appendChild(table);  
 }
 
 
@@ -249,7 +263,6 @@ function toggleEditMode(btn) {
     row.querySelector("input[type='date']").setAttribute("min", today);
     row.querySelectorAll("textarea, input, select").forEach(el => el.disabled = false);
 
-    // Auto-resize textareas
     row.querySelectorAll("textarea").forEach(t => {
       t.style.height = "auto";
       t.style.height = t.scrollHeight + "px";
@@ -259,7 +272,6 @@ function toggleEditMode(btn) {
       });
     });
 
-    // ✅ FIX: Define actionCell before modifying it
     const actionCell = row.querySelector("td:last-child");
 
     actionCell.innerHTML = `
@@ -268,8 +280,6 @@ function toggleEditMode(btn) {
     `;
   }
 }
-
-
 
 // Save edited task
 function saveTask(btn) {
@@ -282,41 +292,37 @@ function saveTask(btn) {
   const priority = row.querySelector("td:nth-child(4) select").value;
   const teamMember = row.querySelector("td:nth-child(5) input[type='text']").value.trim();
 
-  // ✅ Validation
   if (!taskName || !taskDesc || !dueDate || !priority || !teamMember) {
-    showToast("❌ Please fill in all fields before saving", "error");
+    showMsg("❌ Please fill in all fields before saving", "error");
     return;
   }
 
-  // ✅ Save updated task
-  tasks[index] = { name: taskName, desc: taskDesc, due: dueDate, prior: priority, teamMem: teamMember };
+  tasks[index] = { name: taskName,
+                   desc: taskDesc, 
+                   due: dueDate, 
+                   prior: priority, 
+                   teamMem: teamMember 
+                  };
 
-  // ✅ Exit edit mode and disable fields
   row.classList.remove("editing");
   row.querySelectorAll("textarea, input, select").forEach(el => el.disabled = true);
 
-  // ✅ Replace action buttons
   const actionCell = row.querySelector("td:last-child");
   actionCell.innerHTML = `
     <button onclick="toggleEditMode(this)" title="Edit Task">✏️</button>
     <button onclick="deleteTask(${index})" title="Delete Task">🗑️</button>
   `;
 
-  // ✅ Highlight row briefly
   row.classList.add("saved-row");
   setTimeout(() => row.classList.remove("saved-row"), 1000);
 
-  // ✅ Show toast message
-  showToast("✅ Task saved successfully!", "success");
+  showMsg("✅ Task saved successfully!", "success");
 }
 
-
-// Cancel editing
 function cancelEdit(btn) {
   renderTasks();
 }
 
-// Delete task
 function deleteTask(index) {
   if (confirm("Are you sure you want to delete this task?")) {
     tasks.splice(index, 1);
@@ -324,36 +330,88 @@ function deleteTask(index) {
   }
 }
 
-function handleSort(type) {
-  if (type === "priority") {
+function handleSortChange() {
+  const sortTypeSelect = document.getElementById("sortType");
+  currentSortType = sortTypeSelect.value;
+  sortTasks();
+}
+
+function toggleSortOrder() {
+  sortAscending = !sortAscending;
+  const btn = document.getElementById("sortOrderBtn");
+  btn.textContent = sortAscending ? "⬆️ Asc" : "⬇️ Desc";
+  sortTasks();
+}
+
+function sortTasks() {
+  if (currentSortType === "priority") {
     const priorityOrder = { High: 1, Medium: 2, Low: 3 };
-    tasks.sort((a, b) => priorityOrder[a.prior] - priorityOrder[b.prior]);
-  } else if (type === "dueDate") {
-    tasks.sort((a, b) => new Date(a.due) - new Date(b.due));
+    tasks.sort((a, b) => {
+      const result = priorityOrder[a.prior] - priorityOrder[b.prior];
+      return sortAscending ? result : -result;
+    });
+  } else if (currentSortType === "dueDate") {
+    tasks.sort((a, b) => {
+      const result = new Date(a.due) - new Date(b.due);
+      return sortAscending ? result : -result;
+    });
   }
   renderTasks();
 }
 
-
-// Restrict past dates
 window.addEventListener("DOMContentLoaded", () => {
   const today = new Date().toISOString().split("T")[0];
   dueDateInput.min = today;
+
+  displayDueTomorrowTasks();
+  
+  document.addEventListener("change", function (e) {
+    if (e.target && e.target.id === "sortType") {
+      handleSortChange();
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (e.target && e.target.id === "sortOrderBtn") {
+      toggleSortOrder();
+    }
+  });
 });
 
-
-function showToast(message, type = "success") {
-  let toast = document.getElementById("toast");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "toast";
-    document.body.appendChild(toast);
+function showMsg(message, type = "success") {
+  let msg = document.getElementById("msg");
+  if (!msg) {
+    msg = document.createElement("div");
+    msg.id = "msg";
+    document.body.appendChild(msg);
   }
 
-  toast.textContent = message;
-  toast.className = `show ${type}`;
+  msg.textContent = message;
+  msg.className = `show ${type}`;
   setTimeout(() => {
-    toast.className = toast.className.replace("show", "");
+    msg.className = msg.className.replace("show", "");
   }, 2500);
 }
+
+function displayDueTomorrowTasks() {
+  const banner = document.getElementById("dueTasksBanner");
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  //Tomorrow Date Format
+  const tomorrowStr = tomorrow.toISOString().split("T")[0];
+
+  const dueTomorrowTasks = tasks.filter(task => task.due === tomorrowStr);
+
+  if (dueTomorrowTasks.length === 0) {
+    banner.textContent = "🎉 No tasks due tomorrow!";
+  } else {
+    const taskNames = dueTomorrowTasks.map(t => t.name).join(" | ");
+    banner.textContent = `⏰ Tasks due tomorrow: ${taskNames}`;
+  }
+}
+
+
+
 
