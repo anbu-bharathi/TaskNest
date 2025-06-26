@@ -495,5 +495,14 @@ html, body {
   }
 }
 
+#dueTasksBanner {
+  color: white;
+  background: #1a237e;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 
 

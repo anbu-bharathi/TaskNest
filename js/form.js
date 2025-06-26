@@ -164,6 +164,7 @@ form.addEventListener("submit", function (e) {
 
   tasks.push(task);
   renderTasks();
+  displayDueTomorrowTasks(); 
   form.reset();
   message.textContent = "✅ Task added successfully!";
   message.style.color = "darkgreen";
@@ -172,74 +173,77 @@ form.addEventListener("submit", function (e) {
 });
 
 function renderTasks() {
-  taskList.innerHTML = "";
-  const sortControls = document.createElement("div");
-  sortControls.id = "sort-controls";
-  sortControls.style.textAlign = "right";
-  sortControls.style.marginBottom = "10px";
-  sortControls.innerHTML = `
-    <label for="sortType">Sort by: </label>
-    <select id="sortType" onchange="handleSortChange()">
-      <option value="">-- Select --</option>
-      <option value="priority" ${currentSortType === "priority" ? "selected" : ""}>Priority</option>
-      <option value="dueDate" ${currentSortType === "dueDate" ? "selected" : ""}>Due Date</option>
-    </select>
-    <button id="sortOrderBtn">${sortAscending ? "⬆️ Asc" : "⬇️ Desc"}</button>
-`;
-  taskList.appendChild(sortControls);
-
+  let html = `
+    <div id="sort-controls" style="text-align: right; margin-bottom: 10px;">
+      <label for="sortType">Sort by: </label>
+      <select id="sortType">
+        <option value="">-- Select --</option>
+        <option value="priority" ${currentSortType === "priority" ? "selected" : ""}>Priority</option>
+        <option value="dueDate" ${currentSortType === "dueDate" ? "selected" : ""}>Due Date</option>
+      </select>
+      <button id="sortOrderBtn">${sortAscending ? "⬆️ Asc" : "⬇️ Desc"}</button>
+    </div>
+  `;
 
   if (tasks.length === 0) {
-    const noTaskMsg = document.createElement("p");
-    noTaskMsg.textContent = "No tasks available.";
-    taskList.appendChild(noTaskMsg);
-    return;
+    html += `<p>No tasks available.</p>`;
+  } else {
+    html += `
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Team Member</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    tasks.forEach((task, index) => {
+      html += `
+        <tr>
+          <td><textarea disabled maxlength="50">${task.name}</textarea></td>
+          <td><textarea disabled maxlength="200">${task.desc}</textarea></td>
+          <td><input type="date" value="${task.due}" disabled></td>
+          <td>
+            <select disabled>
+              <option value="High" ${task.prior === "High" ? "selected" : ""}>High</option>
+              <option value="Medium" ${task.prior === "Medium" ? "selected" : ""}>Medium</option>
+              <option value="Low" ${task.prior === "Low" ? "selected" : ""}>Low</option>
+            </select>
+          </td>
+          <td><input type="text" value="${task.teamMem}" disabled></td>
+          <td>
+            <button onclick="toggleEditMode(this)" title="Edit Task">✏️</button>
+            <button onclick="deleteTask(${index})" title="Delete Task">🗑️</button>
+          </td>
+        </tr>
+      `;
+    });
+
+    html += `
+        </tbody>
+      </table>
+    `;
   }
 
-  const table = document.createElement("table");
-  table.className = "task-table";
+  taskList.innerHTML = html;
 
-  const thead = document.createElement("thead");
-  thead.innerHTML = `
-    <tr>
-      <th>Task Name</th>
-      <th>Description</th>
-      <th>Due Date</th>
-      <th>Priority</th>
-      <th>Team Member</th>
-      <th>Actions</th>
-    </tr>
-  `;
-  table.appendChild(thead);
+  const sortTypeSelect = document.getElementById("sortType");
+  const sortOrderBtn = document.getElementById("sortOrderBtn");
 
-  const tbody = document.createElement("tbody");
+  if (sortTypeSelect) {
+    sortTypeSelect.addEventListener("change", handleSortChange);
+  }
 
-  tasks.forEach((task, index) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td><textarea disabled maxlength="50">${task.name}</textarea></td>
-      <td><textarea disabled maxlength="200">${task.desc}</textarea></td>
-      <td><input type="date" value="${task.due}" disabled></td>
-      <td>
-        <select disabled>
-          <option value="High" ${task.prior === "High" ? "selected" : ""}>High</option>
-          <option value="Medium" ${task.prior === "Medium" ? "selected" : ""}>Medium</option>
-          <option value="Low" ${task.prior === "Low" ? "selected" : ""}>Low</option>
-        </select>
-      </td>
-      <td><input type="text" value="${task.teamMem}" disabled></td>
-      <td>
-        <button onclick="toggleEditMode(this)" title="Edit Task">✏️</button>
-        <button onclick="deleteTask(${index})" title="Delete Task">🗑️</button>
-      </td>
-    `;
-    tbody.appendChild(row);
-  });
-
-  table.appendChild(tbody);
-  taskList.appendChild(table);  
+  if (sortOrderBtn) {
+    sortOrderBtn.addEventListener("click", toggleSortOrder);
+  }
 }
-
 
 // Edit task
 function toggleEditMode(btn) {
@@ -315,7 +319,7 @@ function saveTask(btn) {
 
   row.classList.add("saved-row");
   setTimeout(() => row.classList.remove("saved-row"), 1000);
-
+  displayDueTomorrowTasks();
   showMsg("✅ Task saved successfully!", "success");
 }
 
@@ -327,6 +331,7 @@ function deleteTask(index) {
   if (confirm("Are you sure you want to delete this task?")) {
     tasks.splice(index, 1);
     renderTasks();
+    dueTomorrowTasks();
   }
 }
 
@@ -364,7 +369,6 @@ window.addEventListener("DOMContentLoaded", () => {
   dueDateInput.min = today;
 
   displayDueTomorrowTasks();
-  
   document.addEventListener("change", function (e) {
     if (e.target && e.target.id === "sortType") {
       handleSortChange();
@@ -379,13 +383,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function showMsg(message, type = "success") {
-  let msg = document.getElementById("msg");
-  if (!msg) {
-    msg = document.createElement("div");
-    msg.id = "msg";
-    document.body.appendChild(msg);
-  }
-
+  const msg = document.getElementById("msg");
   msg.textContent = message;
   msg.className = `show ${type}`;
   setTimeout(() => {
@@ -393,25 +391,29 @@ function showMsg(message, type = "success") {
   }, 2500);
 }
 
+
 function displayDueTomorrowTasks() {
   const banner = document.getElementById("dueTasksBanner");
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + 1);
-
-  //Tomorrow Date Format
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
   const tomorrowStr = tomorrow.toISOString().split("T")[0];
 
   const dueTomorrowTasks = tasks.filter(task => task.due === tomorrowStr);
 
+ 
+  const latestDue = tasks.reduce((latest, task) => {
+    return new Date(task.due) > new Date(latest) ? task.due : latest;
+  }, tasks[0]?.due || tomorrowStr); 
+
   if (dueTomorrowTasks.length === 0) {
     banner.textContent = "🎉 No tasks due tomorrow!";
+  } else if (latestDue === tomorrowStr) {
+    banner.textContent = "⚠️ Tomorrow is the last due date. Complete your pending tasks!";
   } else {
     const taskNames = dueTomorrowTasks.map(t => t.name).join(" | ");
     banner.textContent = `⏰ Tasks due tomorrow: ${taskNames}`;
   }
 }
-
 
 
 
