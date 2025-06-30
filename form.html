@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Task Manager</title>
+  <title>Task Manager - Task Form</title>
   <link rel="stylesheet" href="css/form.css" />
 </head>
-
 <body class="reset">
   <div id="msg"></div>
+
   <div id="page">
+    <!-- Tab Navigation -->
     <div class="tab-header">
       <button class="tab-button active" onclick="showTab('add')">Add Task</button>
       <button class="tab-button" onclick="showTab('view')">View Tasks</button>
     </div>
 
+    <!-- Task Form & List -->
     <div class="task-form-container">
 
-      <!-- Add Task Form -->
+      <!-- Add Task Tab -->
       <div id="add-tab" class="tab-content active">
         <h2 class="form-title">Create Task</h2>
         <form id="taskForm">
+
           <div class="form-group">
             <label for="taskName" class="form-label">Task Name <span class="star">*</span></label>
             <input type="text" id="taskName" class="form-input" maxlength="30" />
@@ -63,17 +66,18 @@
 
           <button type="submit" class="submit-btn">Add Task</button>
           <div class="form-message" id="message"></div>
+
         </form>
       </div>
 
+      <!-- View Tasks Tab -->
       <div id="view-tab" class="tab-content">
         <h2 class="form-title">All Tasks</h2>
         <div id="taskList" class="task-list"></div>
       </div>
-
     </div>
   </div>
-
   <script src="js/form.js"></script>
 </body>
 </html>
+

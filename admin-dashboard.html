@@ -1,0 +1,15 @@
+<div class="admin-profile">
+  <img src="avatar.png" alt="Profile" class="avatar" />
+  <span class="role-badge">Admin</span>
+  <h3 id="adminName"></h3>
+  <p id="adminEmail"></p>
+</div>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "index.html"; // login page
+  }
+</script>
