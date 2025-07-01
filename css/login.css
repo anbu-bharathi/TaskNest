@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #fce4ec); /* Light blue and pink gradient */
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec); 
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -29,36 +29,36 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Hidden class for loader */
 .hidden {
   display: none;
 }
 
-
 .modal {
+  display: none; 
   position: fixed;
-  top: 0;
+  z-index: 999;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: none;
-  justify-content: center;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+  display: flex;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
 }
 
 
 .modal-content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(240, 98, 146, 0.3);
-  width: 350px;
-  max-width: 90%;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: slideFadeIn 0.4s ease;
   position: relative;
-  animation: popup 0.4s ease-in-out;
 }
+
 
 @keyframes popup {
   0% { transform: scale(0.5); opacity: 0; }
@@ -147,3 +147,57 @@ button:hover {
   from { opacity: 0; transform: translateY(-30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+#passwordStrengthMsg{
+  color:gray;
+}
+
+input.valid {
+  border: 2px solid green;
+}
+
+input.invalid {
+  border: 2px solid red;
+}
+
+.strength-msg {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.strength-msg.weak {
+  color: red;
+}
+
+.strength-msg.medium {
+  color: orange;
+}
+
+.strength-msg.strong {
+  color: green;
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes slideFadeIn {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
