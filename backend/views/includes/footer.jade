@@ -1,0 +1,34 @@
+mixin footerLinks(title, links)
+  .footer-column
+    h4= title
+    ul
+      each item in links
+        li
+          a(href=item.href)= item.label
+
+mixin socialIcon(href, src, alt)
+  a(href=href)
+    img(src=src, alt=alt)
+
+footer#footer
+  .footer-container
+
+    .footer-column
+      h2.footer-logo #{title.titleOne}
+        span #{title.titleTwo}
+      .social-icons
+        each icon in socialIcons
+          +socialIcon(icon.href, icon.src, icon.alt)
+
+    +footerLinks("Company", companyLinks)
+    +footerLinks("Support", supportLinks)
+
+    .footer-column-contact-info
+      each item in contactInfo
+        p
+          strong #{item.label}:
+          |  #{item.value}
+
+  .footer-bottom
+    p #{footerBottom}
+

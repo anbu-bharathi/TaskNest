@@ -1,0 +1,15 @@
+.modal#loginModal
+  .modal-content
+    button.close-btn(onclick="closeModal('loginModal')") &times;
+    form#loginForm
+      h2 #{auth.login}
+      input#loginEmail(type="email", placeholder="Email")
+      span#error-msg.loginEmailError
+      .input-group
+        input#loginPassword(type="password", placeholder="Password")
+        span.toggle-password(onclick="togglePassword('loginPassword')") 👁️
+        span#error-msg.loginPassError
+      .forgot-password
+        | #{loginButton.nonRegister}
+        a(href="#", onclick="switchToSignup()") #{loginButton.createAcc}
+      button(type="submit") #{auth.login}

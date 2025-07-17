@@ -1,0 +1,62 @@
+header#navbar
+  #logo-container
+    img#logo-image(src=logoImg, alt="Logo") 
+    span#logo-text #{title.titleOne}
+      span#logo-highlight #{title.titleTwo}
+
+  nav#nav-links
+    each data in navigation
+      a(href=data.id)= data.name
+
+  .auth-buttons
+    button#showLogin #{auth.login}
+    button#showSignup #{auth.signup}
+
+//- LOGIN MODAL
+.modal#loginModal
+  .modal-content
+    button.close-btn(onclick="closeModal('loginModal')") &times;
+    form#loginForm
+      h2 #{auth.login}
+      input#loginEmail(type="email", placeholder="Email")
+      span#loginEmailError.error-msg
+      .input-group
+        input#loginPassword(type="password", placeholder="Password")
+        span.toggle-password(onclick="togglePassword('loginPassword', this)") 👁️
+        span#loginPassError.error-msg
+      select#loginRole(required)
+        option(value="") #{loginButton.selectRole}
+        option(value="admin") #{loginButton.admin}
+        option(value="member") #{loginButton.member}
+      .forgot-password
+        | #{loginButton.nonRegister}
+        a(href="#", onclick="switchToSignup()") #{loginButton.createAcc}
+      button(type="submit") #{auth.login}
+
+//- SIGNUP MODAL
+.modal#signupModal
+  .modal-content
+    button.close-btn(onclick="closeModal('signupModal')") &times;
+    form#signupForm
+      h2 #{auth.signup}
+      input#signupUsername(type="text", placeholder="Username")
+      span#signupUsernameError.error-msg
+
+      input#signupEmail(type="email", placeholder="Email")
+      span#signupEmailError.error-msg
+
+      .input-group
+        input#signupPassword(type="password", placeholder="Password")
+        span.toggle-password(onclick="togglePassword('signupPassword', this)") 👁️
+      small#passwordStrengthMsg
+      span#signupPasswordError.error-msg
+
+      select#signupRole(required)
+        option(value="") #{loginButton.selectRole}
+        option(value="admin") #{loginButton.admin}
+        option(value="member") #{loginButton.member}
+
+      .login-link
+        | #{loginButton.nonRegister}
+        a(href="#", onclick="switchToLogin()") #{signupButton.loginHere}
+      button(type="submit", id="signupBtn") #{auth.signup}

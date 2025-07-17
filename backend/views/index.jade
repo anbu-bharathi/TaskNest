@@ -1,0 +1,50 @@
+extend layout
+
+block body
+  
+  mixin featureSlide(id, textAlign, section, features, imgSrc, altText)
+    section.feature-slide(id=id)
+      if textAlign === 'left'
+        .feature-text.text-left
+          h2.feature-title= section.title
+          p.feature-description 
+            | #{section.p1}
+            br
+            | #{section.p3}
+          ul.feature-list
+            each val in Object.keys(features)
+              li= features[val]
+        .feature-image-card(id=`img${id.slice(-1)}-card`)
+          img.feature-image(src=imgSrc, alt=altText)
+      else
+        .feature-image-card(id=`img${id.slice(-1)}-card`)
+          img.feature-image(src=imgSrc, alt=altText)
+        .feature-text.text-right
+          h2.feature-title= section.title
+          p.feature-description #{section.p1} #{section.p3}
+          ul.feature-list
+            each val in Object.keys(features)
+              li= features[val]
+
+  section#homepage
+    #bubble-bg
+      each i in [1,2,3,4,5]
+        span.bubble(class=`bubble${i}`)
+
+    #homepage-text
+      h1
+        span#pink= homeContent.plan
+        span#purple= homeContent.manage
+        span#blue= homeContent.achieve
+      h3= homeContent.h3Content
+      p #{homeContent.p1} #{homeContent.p3} #{homeContent.p4} #{homeContent.p5}
+
+    #homepage-video
+      video#intro-video(autoplay muted loop)
+        source(src=media.homepageVideo, type="video/mp4")
+
+  
+  +featureSlide('#slide1', 'left', sectionOne, featureOneList, media.sectionImages.slide1, media.imageAlts.slide1)
+  +featureSlide('#slide2', 'right', sectionTwo, featureTwoList, media.sectionImages.slide2, media.imageAlts.slide2)
+  +featureSlide('#slide3', 'left', sectionThree, featureThreeList, media.sectionImages.slide3, media.imageAlts.slide3)
+  +featureSlide('#slide4', 'right', sectionFour, featureFourList, media.sectionImages.slide4, media.imageAlts.slide4)

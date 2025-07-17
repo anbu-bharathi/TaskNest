@@ -1,0 +1,77 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title= titles.create
+    link(rel="stylesheet", href="/styles/form.css")
+
+  body(class="reset")
+    #msg
+
+    #page
+      .tab-header
+        button.tab-button.active(onclick="showTab('add')")= tabs.add
+        button.tab-button(onclick="showTab('view')")= tabs.view
+
+      .task-form-container
+        #add-tab.tab-content.active
+          h2.form-title= titles.create
+          form#taskForm(enctype="multipart/form-data")
+            .form-group
+              label.form-label(for="taskName") #{labels.name}
+                span.star #{star}
+              input#taskName.form-input(type="text", maxlength="30")
+              .form-error#taskNameError
+
+            .form-group
+              label.form-label(for="taskDesc") #{labels.desc}
+                span.star #{star}
+              textarea#taskDesc.form-textarea(rows="3", maxlength="200")
+              .form-error#taskDescError
+
+            .form-group
+              label.form-label(for="dueDate") #{labels.date}
+                span.star #{star}
+              input#dueDate.form-input(type="date")
+              .form-error#dueDateError
+
+            .form-group
+              label.form-label(for="priority") #{labels.priority}
+                span.star #{star}
+              select#priority.form-select
+                option(value="") Select
+                each p in priorities
+                  option(value=p)= p
+              .form-error#priorityError
+
+            .form-group
+              label.form-label(for="teammember") #{labels.member}
+                span.star #{star}
+              input#teammember.form-input(type="text", placeholder=formPlaceholders.member)
+              .form-error#teammemberError
+
+            .form-group
+              label.form-label(for="attachment") #{labels.attachment}
+              input#attachment.form-input(type="file")
+
+            button.submit-btn(type="submit")= buttons.submit
+            .form-message#message
+
+        #view-tab.tab-content
+          h2.form-title= titles.viewAll
+
+          .task-filters(style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;")
+            input#searchInput(type="text", placeholder=placeholders.search, style="padding: 6px; flex: 1;")
+            select#priorityFilter(style="padding: 6px;")
+              option(value="") All Priorities
+              each p in priorities
+                option(value=p)= p
+            button(type="button", onclick="exportTasks()", style="padding: 6px;")= buttons.exportCSV
+            button(type="button", onclick="exportTasksPDF()", style="padding: 6px;")= buttons.exportPDF
+
+          #taskList.task-list
+
+    script(src="/js/form.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js")

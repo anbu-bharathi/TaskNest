@@ -1,0 +1,12 @@
+doctype html
+html(lang="en")
+  head
+    include ./includes/header
+    include ./includes/navbar
+    block head
+  body
+    block body
+    include ./includes/footer   
+    block script
+      script(src="/js/login.js")
+
