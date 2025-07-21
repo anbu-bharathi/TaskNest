@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title adminDashboard
+    link(rel="stylesheet", href="/styles/adminDashboard.css")
+
+  body
+    // Top Navbar
+    header.top-navbar	
+      .logo TASK 
+        span.highlight NEST
+      input.search-box(type="text", placeholder="Search by Task Name/Teammember")
+      .user-controls
+        .user-info #{user.name} ▾  // ← dynamic user name
+
+    // Sub Navigation Buttons
+    nav.sub-nav
+      each btn in ['Add Team member', 'Add Task', 'Timesheet', 'Calendar', 'Attendance', 'External Alerts']
+        button= btn
+
+    // Step Cards
+    main.steps-section
+      each step, idx in [
+        { num: 1, color: 'pink', title: 'Step 1', desc: 'Add Team member' },
+        { num: 2, color: 'green', title: 'Step 2', desc: 'Add Task' },
+        { num: 3, color: 'blue', title: 'Step 3', desc: 'Get Notifications' }
+      ]
+        .step-card(class=step.color)
+          .step-number= step.num
+          .step-title= step.title
+          .step-desc= step.desc
+
+    // Charts Section
+    section.dashboard-charts
+      each chart in [
+        { id: 'dueTaskChart', title: 'Due Task Distribution' },
+        { id: 'priorityChart', title: 'Task Priority Levels' }
+      ]
+        .chart-container
+          h3= chart.title
+          canvas(id=chart.id)
+
+    // Scripts
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+    script(src="/js/adminDashboard.js")

@@ -2,7 +2,23 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT_SECRET || "default_secret_key";
 
-exports.authenticate = (req,res,next) => {
+exports.authenticateAdmin = (req,res,next) =>{
+    let loggedinUser = req?.session?.user || null;
+    if(!loggedinUser){
+        return res.status(401).json({
+            message: "Unauthorized",
+
+        })
+
+    }
+     if(req?.session?.user?.role !== "admin") {
+        return res.status(403).json({ msg: "Forbidden : you don't have access" });
+    }
+    next();
+}
+
+exports.authenticate1 = (req,res,next) => {
+    console.log(req?.session?.userId,req?.session?.user);
     const authHeader = req.headers.authorization;
     console.log(authHeader);
     if (!authHeader || !authHeader.startsWith("Bearer")) {
@@ -20,10 +36,3 @@ exports.authenticate = (req,res,next) => {
     }
 };
 
-//allow only admin users
-exports.authorizeadmin = (req,res,next) => {
-    if (!req.user || req.user.role !== "admin") {
-        return res.status(403).json({ msg: "Forbidden: admins only" });
-    }
-    next();
-};
